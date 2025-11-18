@@ -14,13 +14,13 @@
         //selecionando a div onde a lista sera exibida
         let lista = document.getElementById('lista');
         
-        let funcionario = { };
+        let usuarios = { };
 
 
-        function getFuncionarios(){
+        function getUsuarios(){
                 isLoading = true;
 
-            fetch('http://localhost/API-PWII/backend/listar_funcionarios.php',
+            fetch('http://localhost/API-PWII/backend/listar_usuarios.php',
                 {
                     method: 'GET',
                     headers: {
@@ -31,12 +31,12 @@
             .then(response => response.json())
             .then(response => {
                 
-                response.funcionarios.forEach(fun => {
+                response.usuarios.forEach(fun => {
                     // montando o visual da lista
                     let row = document.createElement('div');
                     row.classList.add('row');
                     row.setAttribute('id', fun.CodFun);
-                    row.setAttribute('onclick', 'alert("Funcionario ' + fun.Nome + ' selecionado de id ' + fun.CodFun + '")');
+                    row.setAttribute('onclick', 'alert("Usuarios ' + fun.Nome + ' selecionado de id ' + fun.CodFun + '")');
 
                     let col = document.createElement('div');
                     col.classList.add('col-12');
@@ -58,7 +58,7 @@
             })
         }
 
-        getFuncionarios(); // Buscar Dados
+        getUsuarios(); // Buscar Dados
     </script>
     
     

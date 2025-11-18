@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
     $codigo = $requestData->CodFun;
 
 	// CodFun é o nome da coluna que está sendo enviado pelo cliente
-	$sql = "DELETE FROM Funcionarios WHERE CodFun='$codigo'";
+	$sql = "DELETE FROM Usuarios WHERE CodFun='$codigo'";
 
     if ($connection->query($sql) === true) {
         $response = [

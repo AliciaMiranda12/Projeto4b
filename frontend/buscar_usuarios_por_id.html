@@ -9,19 +9,19 @@
   <body>
 
     <script>
-        let funcionario = { CodFun: '1' };
+        let usuarios = { CodFun: '1' };
         let isLoading = false;
 
-        function getFuncionarios(){
+        function getUsuarios(){
                 isLoading = true;
 
-            fetch('http://localhost/api/backend/buscar_funcionario_por_id.php',
+            fetch('http://localhost/api/backend/buscar_usuarios_por_id.php',
                     {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(funcionario)
+                    body: JSON.stringify(usuarios)
                     }
                 )
             .then(response => response.json())
@@ -36,7 +36,7 @@
             })
         }
 
-        getFuncionarios(); // Buscar Dados
+        getUsuarios(); // Buscar Dados
     </script>
     
     

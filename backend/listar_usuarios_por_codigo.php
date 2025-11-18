@@ -13,23 +13,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigo = $requestData->CodFun;
 
 
-	$sql = "SELECT * FROM Funcionarios WHERE CodFun = '$codigo'";
+	$sql = "SELECT * FROM Usuarios WHERE CodFun = '$codigo'";
 
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
-        $funcionarios = [];
+        $usuarios = [];
         while ($row = $result->fetch_assoc()) {
-            array_push($funcionarios, $row);
+            array_push($usuarios, $row);
         }
 
         $response = [
-            'funcionarios' => $funcionarios
+            'usuarios' => $usuarios
         ];
 
     } else {
         $response = [
-            'funcionarios' => 'Nenhum registro encontrado!'
+            'usuarios' => 'Nenhum registro encontrado!'
         ];
     }
 
