@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <form action="../backend/index.php" method="post">
+            <label for="nome" class="label-control">Nome:</label>
+            <input type="text" name="nome" id="nome" class="form-control" maxlength="50" required autocomplete="off">
+            <br>
+            <label for="senha" class="label-control">Senha:</label>
+            <input type="password" name="senha" id="senha" class="form-control" maxlength="50" required autocomplete="off">
+            <br>
+            <label for="email" class="label-control">Email:</label>
+            <input type="email" name="email" id="email" class="form-control" maxlength="50" required autocomplete="off">
+            <br>
+            <input type="submit" value="Enviar" >
+        </form>
+</body>
+</html>

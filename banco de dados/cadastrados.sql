@@ -59,7 +59,7 @@ CREATE TABLE `usuarios` (
   `IdUsuario` int(11) NOT NULL,
   `Nome` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
-  `Senha` char(64) NOT NULL,
+  `Senha` varchar(64) NOT NULL,
   `DataCadastro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
