@@ -1,11 +1,14 @@
 <?php
 include '../backend/cors.php';
-include '../backend/conexao.php'; // aqui está sua conexão MySQLi: $connection
+include '../backend/conexao.php'; // conexão MySQLi: $connection
 
 // Pegando dados enviados pelo formulário
 $nome  = $_POST['nome']  ?? exit("Nome não enviado");
 $senha = $_POST['senha'] ?? exit("Senha não enviada");
 $email = $_POST['email'] ?? exit("Email não enviado");
+
+// Gerar hash seguro da senha
+$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
 // Preparar a query para evitar SQL injection
 $stmt = $connection->prepare("INSERT INTO usuarios (nome, senha, email) VALUES (?, ?, ?)");
@@ -13,17 +16,16 @@ if (!$stmt) {
     die("Falha na preparação da query: " . $connection->error);
 }
 
-// Vincular os parâmetros
-$stmt->bind_param("sss", $nome, $senha, $email);
+// Vincular parâmetros
+$stmt->bind_param("sss", $nome, $senha_hash, $email);
 
-// Executar a query
+// Executar
 if ($stmt->execute()) {
     echo "Usuário cadastrado com sucesso!";
 } else {
     echo "Erro ao cadastrar usuário: " . $stmt->error;
 }
 
-// Fechar statement e conexão
 $stmt->close();
 $connection->close();
 
