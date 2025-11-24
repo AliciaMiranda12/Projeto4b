@@ -11,10 +11,11 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <li><a class="dropdown-item" href="#">Perfil</a></li>
-    <li><a class="dropdown-item" href="#">Feed</a></li>
-    <li><a class="dropdown-item" href="#">Contato</a></li>
+    <li><a class="dropdown-item" href="index.php">Home</a></li>
+    <li><a class="dropdown-item" href="postagens.php">Feed</a></li>
+    <li><a class="dropdown-item" href="contato.php">Contato</a></li>
       <form class="d-flex" role="Buscar">
-        <input class="form-control me-2" type="Buscar" placeholder="Buscar" aria-label="Buscar"/>
+        <input class="form-control me-2" type="Buscar" placeholder="Insira o nome" aria-label="Buscar"/>
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
