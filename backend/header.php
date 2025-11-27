@@ -10,12 +10,13 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
-    <li><a class="dropdown-item" href="#">Perfil</a></li>
-    <li><a class="dropdown-item" href="index.php">Home</a></li>
-    <li><a class="dropdown-item" href="postagens.php">Feed</a></li>
-    <li><a class="dropdown-item" href="contato.php">Contato</a></li>
+    <a class="dropdown-item" href="#">Perfil</a>
+    <a class="dropdown-item" href="index.html">Home</a>
+    <a class="dropdown-item" href="../frontend/postagens.html">Postar</a>
+    <a class="dropdown-item" href="../frontend/feed.html">Feed</a>
+    <a class="dropdown-item" href="contato.html">Contato</a>
       <form class="d-flex" role="Buscar">
-        <input class="form-control me-2" type="Buscar" placeholder="Insira o nome" aria-label="Buscar"/>
+        <input class="form-control me-1" type="Buscar" placeholder="Insira o nome" aria-label="Buscar"/>
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
