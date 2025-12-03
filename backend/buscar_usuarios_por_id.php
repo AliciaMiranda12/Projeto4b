@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Busca por nome exato ou parecido
     $sql = "SELECT IdUsuario, nome FROM Usuarios WHERE nome LIKE ?";
     $stmt = $connection->prepare($sql);
 
@@ -26,10 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Se houver mais de 1, pega só o primeiro
     $usuario = $result->fetch_assoc();
 
-    // Salva Id na sessão
     $_SESSION['IdUsuario'] = $usuario['IdUsuario'];
 
     echo json_encode([

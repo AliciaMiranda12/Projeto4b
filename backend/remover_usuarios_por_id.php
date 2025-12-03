@@ -3,16 +3,13 @@
 	include 'conexao.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-    // Obtém o corpo da solicitação POST
+   
     $data = file_get_contents("php://input");
 
-    // Decodifica o JSON para um objeto PHP
     $requestData = json_decode($data);
 
-    // Agora você pode acessar os dados usando $requestData
     $codigo = $requestData->CodFun;
 
-	// CodFun é o nome da coluna que está sendo enviado pelo cliente
 	$sql = "DELETE FROM Usuarios WHERE CodFun='$codigo'";
 
     if ($connection->query($sql) === true) {

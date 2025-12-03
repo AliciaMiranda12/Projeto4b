@@ -4,7 +4,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        // RECEBE VIA POST NORMAL (não JSON)
+      
         $codigo = $_POST['IdUsuario'] ?? null;
 
         if (!$codigo) {
@@ -12,7 +12,7 @@
             exit;
         }
 
-        // AJUSTE AQUI COM O NOME CERTO DA COLUNA
+        
         $sql = "SELECT * FROM Usuarios WHERE IdUsuario = ?";
 
         $stmt = $connection->prepare($sql);

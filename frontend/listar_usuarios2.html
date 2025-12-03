@@ -10,7 +10,7 @@
 
     <div class="container" id="lista"></div>
     <script>
-        //selecionando a div onde a lista sera exibida
+        
         let lista = document.getElementById('lista');
         
         let usuarios = { };
@@ -31,7 +31,7 @@
             .then(response => {
                 
                 response.usuarios.forEach(fun => {
-                    // montando o visual da lista
+                   
                     let row = document.createElement('div');
                     row.classList.add('row');
                     row.setAttribute('id', fun.CodFun);
