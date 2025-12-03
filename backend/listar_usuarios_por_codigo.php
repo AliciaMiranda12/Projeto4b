@@ -1,38 +1,30 @@
 <?php
-	include 'cors.php';
-	include 'conexao.php';
+    include 'cors.php';
+    include 'conexao.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém o corpo da solicitação POST
-    $data = file_get_contents("php://input");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Decodifica o JSON para um objeto PHP
-    $requestData = json_decode($data);
-    
-    // Agora você pode acessar os dados usando $requestData
-    $codigo = $requestData->CodFun;
+        // RECEBE VIA POST NORMAL (não JSON)
+        $codigo = $_POST['IdUsuario'] ?? null;
 
-
-	$sql = "SELECT * FROM Usuarios WHERE CodFun = '$codigo'";
-
-    $result = $connection->query($sql);
-
-    if ($result->num_rows > 0) {
-        $usuarios = [];
-        while ($row = $result->fetch_assoc()) {
-            array_push($usuarios, $row);
+        if (!$codigo) {
+            echo json_encode(["erro" => "IdUsuario não enviado"]);
+            exit;
         }
 
-        $response = [
-            'usuarios' => $usuarios
-        ];
+        // AJUSTE AQUI COM O NOME CERTO DA COLUNA
+        $sql = "SELECT * FROM Usuarios WHERE IdUsuario = ?";
 
-    } else {
-        $response = [
-            'usuarios' => 'Nenhum registro encontrado!'
-        ];
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $codigo);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $usuarios = $result->fetch_all(MYSQLI_ASSOC);
+            echo json_encode(["usuarios" => $usuarios]);
+        } else {
+            echo json_encode(["usuarios" => []]);
+        }
     }
-
-    echo json_encode($response);
-	} // Fim If
 ?>

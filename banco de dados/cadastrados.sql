@@ -108,6 +108,7 @@ ALTER TABLE `usuarios`
 --
 -- Restrições para tabelas despejadas
 --
+ALTER TABLE usuarios ADD FotoPerfil VARCHAR(255);
 
 --
 -- Restrições para tabelas `postagens`

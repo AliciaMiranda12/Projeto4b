@@ -1,41 +1,42 @@
 <?php
+session_start();
 include 'conexao.php';
-include 'cors.php';
 
-// Verifica a conexão
-if (!isset($connection) || !$connection) {
-    die("Erro: conexão não encontrada!");
+// Verifica se o usuário está logado
+if (!isset($_SESSION['IdUsuario'])) {
+    die("Usuário não logado!");
 }
 
-// Receber dados
+// Recebe os dados do formulário
+$IdUsuario = $_SESSION['IdUsuario'];
 $titulo = $_POST['titulo'] ?? null;
 $conteudo = $_POST['conteudo'] ?? null;
-$idUsuario = 1;
 
+// Validação simples
 if (!$titulo || !$conteudo) {
-    die("Erro: Dados incompletos!");
+    die("Preencha todos os campos!");
 }
 
-// Preparar statement
-$stmt = $connection->prepare("INSERT INTO postagens (IdUsuario, Titulo, Conteudo) VALUES (?, ?, ?)");
+// Prepara a query de inserção
+$stmt = $connection->prepare("INSERT INTO postagens (IdUsuario, Titulo, Conteudo, DataPostagem) VALUES (?, ?, ?, NOW())");
+
+// Verifica se a preparação deu certo
 if (!$stmt) {
-    die("Erro na preparação do statement: " . $connection->error);
+    die("Erro na preparação da query: " . $connection->error);
 }
 
-// Bind de parâmetros
-$stmt->bind_param("iss", $idUsuario, $titulo, $conteudo);
+// Liga os parâmetros
+$stmt->bind_param("iss", $IdUsuario, $titulo, $conteudo);
 
-// Executar
+// Executa a query
 if ($stmt->execute()) {
-    echo "Postagem salva com sucesso!";
-?>
-      <a href="http://localhost//Projeto4b/backend/index.php">Voltar ao início</a>
-
-<?php
+    echo "Postagem criada com sucesso!";
 } else {
-    echo "Erro ao salvar postagem: " . $stmt->error;
+    echo "Erro ao criar postagem: " . $stmt->error;
 }
 
-// Fechar
+// Fecha statement e conexão
 $stmt->close();
+$connection->close();
+header('Location: index.php');
 ?>
